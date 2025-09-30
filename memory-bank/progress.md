@@ -351,6 +351,34 @@ This AI interface serves as the **visual demonstration center** for the revoluti
    - Clear error messages explain what's wrong
    - Warnings for unusual but acceptable input
 
+### ✅ Configuration Export/Import (Just Completed)
+**Enhancement #3**: Backup and restore settings with JSON files
+
+#### Features Implemented:
+1. **Export Functionality**
+   - Downloads config as timestamped JSON file
+   - Includes version metadata and export timestamp
+   - Clean file naming: `elevenlabs-config-{timestamp}.json`
+   - Uses Blob API for browser-compatible downloads
+
+2. **Import Functionality**
+   - Upload JSON file to restore settings
+   - Validates file format and Agent ID before applying
+   - Shows validation errors if imported data is invalid
+   - Toast notifications for success/failure
+
+3. **User Experience**
+   - Beautiful Backup & Restore section in settings
+   - Download and Upload buttons with icons
+   - Hidden file input with custom button styling
+   - Loads imported settings into form (requires manual save)
+
+4. **Error Handling**
+   - Checks for valid JSON format
+   - Validates required fields (agentId)
+   - Runs full validation on imported Agent ID
+   - Clear error messages for all failure cases
+
 ### ✅ .gitignore Enhancement (Completed)
 **Enhancement #1**: Added comprehensive .gitignore file
 
