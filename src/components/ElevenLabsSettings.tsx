@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Settings, X, Check, Info, AlertTriangle } from 'lucide-react';
+import { Settings, X, Check, Info, AlertTriangle, Download, Upload } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -104,6 +104,83 @@ export const ElevenLabsSettings = () => {
     setTimeout(() => {
       window.location.reload();
     }, 1500);
+  };
+
+  const handleExportConfig = () => {
+    const exportData = {
+      agentId: config.agentId,
+      apiKey: config.apiKey,
+      exportedAt: new Date().toISOString(),
+      version: '1.0'
+    };
+
+    const json = JSON.stringify(exportData, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `elevenlabs-config-${Date.now()}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    toast({
+      title: "Configuration Exported",
+      description: "Your settings have been downloaded as a JSON file.",
+    });
+  };
+
+  const handleImportConfig = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const imported = JSON.parse(e.target?.result as string);
+        
+        // Validate imported data
+        if (!imported.agentId) {
+          toast({
+            title: "Invalid Configuration File",
+            description: "The file doesn't contain a valid Agent ID.",
+            variant: "destructive"
+          });
+          return;
+        }
+
+        // Validate the imported Agent ID
+        const validation = validateAgentId(imported.agentId);
+        if (!validation.isValid) {
+          toast({
+            title: "Invalid Agent ID in File",
+            description: validation.errors.join(', '),
+            variant: "destructive"
+          });
+          return;
+        }
+
+        // Import the configuration
+        setAgentId(imported.agentId);
+        setApiKey(imported.apiKey || '');
+        
+        toast({
+          title: "Configuration Imported",
+          description: "Settings have been loaded from file. Click 'Save & Reload' to apply.",
+        });
+      } catch (error) {
+        toast({
+          title: "Import Failed",
+          description: "Failed to parse configuration file. Please check the file format.",
+          variant: "destructive"
+        });
+      }
+    };
+    reader.readAsText(file);
+    
+    // Reset input so the same file can be imported again
+    event.target.value = '';
   };
 
   const handleOpenChange = (newOpen: boolean) => {
@@ -232,15 +309,52 @@ export const ElevenLabsSettings = () => {
           </div>
 
           {hasAgentId && (
-            <div className="pt-4 border-t">
-              <div className="flex items-center gap-2 text-sm text-green-600">
-                <Check className="h-4 w-4" />
-                <span className="font-medium">Voice AI Active</span>
+            <>
+              <div className="pt-4 border-t space-y-3">
+                <div className="flex items-center gap-2 text-sm text-green-600">
+                  <Check className="h-4 w-4" />
+                  <span className="font-medium">Voice AI Active</span>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Agent ID: {config.agentId}
+                </p>
               </div>
-              <p className="text-xs text-muted-foreground mt-1">
-                Agent ID: {config.agentId}
-              </p>
-            </div>
+
+              <div className="pt-4 border-t space-y-2">
+                <p className="text-sm font-medium text-muted-foreground">Backup & Restore</p>
+                <div className="flex gap-2">
+                  <Button
+                    onClick={handleExportConfig}
+                    variant="outline"
+                    size="sm"
+                    className="flex-1"
+                  >
+                    <Download className="mr-2 h-4 w-4" />
+                    Export Config
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex-1"
+                    asChild
+                  >
+                    <label>
+                      <Upload className="mr-2 h-4 w-4" />
+                      Import Config
+                      <input
+                        type="file"
+                        accept=".json"
+                        onChange={handleImportConfig}
+                        className="hidden"
+                      />
+                    </label>
+                  </Button>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Backup your settings or restore from a previous export
+                </p>
+              </div>
+            </>
           )}
         </div>
       </DialogContent>
