@@ -1,5 +1,10 @@
 # Tech Context
 
+# Metadata
+- Last Updated: 2025-01-20 14:30
+- Version: 2.1
+- Notes: Removed .env dependency, added localStorage-based configuration
+
 ## Technology Stack
 
 ### Core Technologies
@@ -67,11 +72,25 @@ npm run preview
 npm run lint
 ```
 
-### Environment Configuration
+### Environment Configuration (UPDATED - January 2025)
+- **NO .env REQUIRED**: Configuration now managed through localStorage
+- **User-Friendly Setup**: Settings UI for ElevenLabs Agent ID configuration
 - **Vite Config**: Custom host ("::" for all interfaces) and port (8080)
 - **Path Aliases**: `@/` maps to `./src/` for cleaner imports
 - **TypeScript Configs**: Separate configs for app and Node.js code
 - **Development Mode**: Lovable component tagger enabled in dev only
+
+#### localStorage Configuration Pattern
+```typescript
+// Configuration stored in browser localStorage
+{
+  agentId: string;  // ElevenLabs Agent ID
+  apiKey?: string;  // Optional API key for future features
+}
+
+// Access via custom hook
+const { config, updateConfig, clearConfig, hasAgentId } = useElevenLabsConfig();
+```
 
 ## Architecture Decisions
 

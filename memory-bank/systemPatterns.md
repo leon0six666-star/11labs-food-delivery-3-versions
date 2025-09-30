@@ -1,5 +1,10 @@
 # System Patterns
 
+# Metadata
+- Last Updated: 2025-01-20 14:30
+- Version: 2.2
+- Notes: Added localStorage configuration pattern for ElevenLabs widget
+
 ## Architecture Overview
 
 ### Application Architecture
@@ -338,6 +343,64 @@ class ErrorBoundary extends Component<Props, State> {
   }
 }
 ```
+
+### 6. localStorage Configuration Pattern (NEW - January 2025)
+**Pattern**: User-friendly configuration management without environment variables.
+
+```typescript
+// Custom Hook Pattern
+const STORAGE_KEY = 'elevenlabs-config';
+
+export const useElevenLabsConfig = () => {
+  const [config, setConfig] = useState<ElevenLabsConfig>(() => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      try {
+        return JSON.parse(stored);
+      } catch (error) {
+        console.error('Failed to parse config:', error);
+      }
+    }
+    return { agentId: '' };
+  });
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+  }, [config]);
+
+  return { config, updateConfig, clearConfig, hasAgentId };
+};
+```
+
+```typescript
+// Widget Dynamic Loading Pattern
+const AppContent = () => {
+  const { config } = useElevenLabsConfig();
+  
+  return (
+    <>
+      <ElevenLabsSettings /> {/* Floating settings button */}
+      {config.agentId && (
+        <elevenlabs-convai agent-id={config.agentId}></elevenlabs-convai>
+      )}
+    </>
+  );
+};
+```
+
+**Benefits**:
+- No .env files needed
+- User-friendly configuration UI
+- Persistent across browser sessions
+- Type-safe configuration management
+- Visual feedback for configuration status
+- Instant widget updates on save
+
+**Components**:
+- `useElevenLabsConfig` hook - Configuration state management
+- `ElevenLabsSettings` component - UI for configuration
+- Floating button UI pattern with status indicator
+- Auto-reload pattern for widget refresh
 
 ## Future Architecture Considerations
 
