@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { Settings, X, Check, Info } from 'lucide-react';
+import { Settings, X, Check, Info, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { useElevenLabsConfig } from '@/hooks/use-elevenlabs-config';
+import { useElevenLabsConfig, validateAgentId, validateApiKey, ValidationResult } from '@/hooks/use-elevenlabs-config';
 import { useToast } from '@/hooks/use-toast';
 
 export const ElevenLabsSettings = () => {
@@ -15,15 +15,65 @@ export const ElevenLabsSettings = () => {
   const [open, setOpen] = useState(false);
   const [agentId, setAgentId] = useState(config.agentId);
   const [apiKey, setApiKey] = useState(config.apiKey || '');
+  const [agentIdValidation, setAgentIdValidation] = useState<ValidationResult | null>(null);
+  const [apiKeyValidation, setApiKeyValidation] = useState<ValidationResult | null>(null);
+
+  // Validate Agent ID on change
+  const handleAgentIdChange = (value: string) => {
+    setAgentId(value);
+    if (value.trim()) {
+      const validation = validateAgentId(value);
+      setAgentIdValidation(validation);
+    } else {
+      setAgentIdValidation(null);
+    }
+  };
+
+  // Validate API Key on change
+  const handleApiKeyChange = (value: string) => {
+    setApiKey(value);
+    if (value.trim()) {
+      const validation = validateApiKey(value);
+      setApiKeyValidation(validation);
+    } else {
+      setApiKeyValidation(null);
+    }
+  };
 
   const handleSave = () => {
-    if (!agentId.trim()) {
+    // Final validation before save
+    const agentValidation = validateAgentId(agentId);
+    const keyValidation = validateApiKey(apiKey);
+    
+    setAgentIdValidation(agentValidation);
+    setApiKeyValidation(keyValidation);
+
+    // Check for errors
+    if (!agentValidation.isValid) {
       toast({
-        title: "Agent ID Required",
-        description: "Please enter an ElevenLabs Agent ID",
+        title: "Invalid Agent ID",
+        description: agentValidation.errors.join(', '),
         variant: "destructive"
       });
       return;
+    }
+
+    if (!keyValidation.isValid) {
+      toast({
+        title: "Invalid API Key",
+        description: keyValidation.errors.join(', '),
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Show warnings if any
+    const allWarnings = [...agentValidation.warnings, ...keyValidation.warnings];
+    if (allWarnings.length > 0) {
+      toast({
+        title: "Configuration Warnings",
+        description: allWarnings.join(', '),
+      });
     }
 
     updateConfig({ agentId: agentId.trim(), apiKey: apiKey.trim() || undefined });
@@ -112,11 +162,33 @@ export const ElevenLabsSettings = () => {
                 id="agentId"
                 placeholder="e.g., gfxc5G8NfuhDmMvpv8tZ"
                 value={agentId}
-                onChange={(e) => setAgentId(e.target.value)}
-                className="font-mono text-sm"
+                onChange={(e) => handleAgentIdChange(e.target.value)}
+                className={`font-mono text-sm ${
+                  agentIdValidation 
+                    ? agentIdValidation.isValid 
+                      ? 'border-green-500' 
+                      : 'border-red-500' 
+                    : ''
+                }`}
               />
+              {agentIdValidation && !agentIdValidation.isValid && (
+                <Alert variant="destructive" className="py-2">
+                  <AlertTriangle className="h-4 w-4" />
+                  <AlertDescription className="text-xs">
+                    {agentIdValidation.errors.join(', ')}
+                  </AlertDescription>
+                </Alert>
+              )}
+              {agentIdValidation && agentIdValidation.isValid && agentIdValidation.warnings.length > 0 && (
+                <Alert className="py-2 border-yellow-500 bg-yellow-50">
+                  <Info className="h-4 w-4 text-yellow-600" />
+                  <AlertDescription className="text-xs text-yellow-600">
+                    {agentIdValidation.warnings.join(', ')}
+                  </AlertDescription>
+                </Alert>
+              )}
               <p className="text-xs text-muted-foreground">
-                Your unique ElevenLabs agent identifier
+                Your unique ElevenLabs agent identifier (typically 20 characters)
               </p>
             </div>
 
