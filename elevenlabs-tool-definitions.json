@@ -1,0 +1,424 @@
+[
+  {
+    "type": "client",
+    "name": "navigate_to_page",
+    "description": "Navigate to different pages of the food delivery website. Use this to move between sections like home, restaurants listing, or shopping cart.",
+    "parameters": [
+      {
+        "id": "page",
+        "type": "string",
+        "description": "The page to navigate to. Options: '' (home), 'restaurants' (restaurant listing), 'cart' (shopping cart)",
+        "required": true
+      }
+    ]
+  },
+  {
+    "type": "client",
+    "name": "browse_restaurants",
+    "description": "Filter and browse restaurants based on user preferences. Apply filters for cuisine type, price range, ratings, delivery time, or dietary restrictions. All parameters are optional - use only what the user specifies.",
+    "parameters": [
+      {
+        "id": "cuisine",
+        "type": "string",
+        "description": "Filter by cuisine type. Options: italian, chinese, american, japanese, indian, mexican, thai, korean, mediterranean, french",
+        "required": false
+      },
+      {
+        "id": "priceRange",
+        "type": "string",
+        "description": "Filter by price range. Options: '$' (budget, $10-15), '$$' (moderate, $12-20), '$$$' (premium, $18-25+)",
+        "required": false
+      },
+      {
+        "id": "rating",
+        "type": "number",
+        "description": "Minimum rating filter (4.0-5.0). Use 4.5+ for highly rated restaurants",
+        "required": false
+      },
+      {
+        "id": "deliveryTime",
+        "type": "number",
+        "description": "Maximum delivery time in minutes. Use 25 for fast delivery, 35 for standard",
+        "required": false
+      },
+      {
+        "id": "search",
+        "type": "string",
+        "description": "Search for specific restaurants, food items, or keywords",
+        "required": false
+      }
+    ]
+  },
+  {
+    "type": "client",
+    "name": "view_restaurant",
+    "description": "Show detailed information and full menu for a specific restaurant. Use this when user wants to see a restaurant's menu or details.",
+    "parameters": [
+      {
+        "id": "restaurantId",
+        "type": "string",
+        "description": "The ID of the restaurant to view. Restaurant IDs: '1' (Bella Vista Pizza), '2' (Dragon Palace), '3' (Burger Spot), '4' (Sakura Sushi), '5' (Spice Garden), '6' (Taco Libre), '7' (Thai Orchid), '8' (Seoul Kitchen), '9' (Mediterranean Breeze), '10' (Le Petit Café)",
+        "required": true
+      }
+    ]
+  },
+  {
+    "type": "client",
+    "name": "add_to_cart",
+    "description": "Add a specific menu item to the shopping cart. Always confirm the item name and quantity with the user before adding. Use restaurant and item IDs from the knowledgebase.",
+    "parameters": [
+      {
+        "id": "restaurantId",
+        "type": "string",
+        "description": "The ID of the restaurant (1-10). Must match the restaurant where the item is from",
+        "required": true
+      },
+      {
+        "id": "itemId",
+        "type": "string",
+        "description": "The ID of the menu item to add. Item IDs are sequential (1-48) across all restaurants. Refer to knowledgebase for correct IDs",
+        "required": true
+      },
+      {
+        "id": "quantity",
+        "type": "number",
+        "description": "Number of items to add (default: 1)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "type": "client",
+    "name": "view_cart",
+    "description": "Display the current shopping cart contents, including items, quantities, prices, and total. Use this when user wants to review their order.",
+    "parameters": []
+  },
+  {
+    "type": "client",
+    "name": "search",
+    "description": "Search for restaurants or food items across the entire platform. Use this for general searches when user mentions specific dishes or restaurant names.",
+    "parameters": [
+      {
+        "id": "query",
+        "type": "string",
+        "description": "Search query - can be food items (pizza, sushi, burger), restaurant names, or general terms",
+        "required": true
+      }
+    ]
+  },
+  {
+    "type": "client",
+    "name": "search_food",
+    "description": "Advanced food search across all restaurants with detailed filtering. Use when user wants to find specific foods with ingredients, dietary restrictions, or price limits. Perfect for queries like 'pizzas with mushrooms' or 'vegetarian pasta under $20'.",
+    "parameters": [
+      {
+        "id": "query",
+        "type": "string",
+        "description": "Food search query (e.g., 'pizza', 'pasta', 'burger')",
+        "required": false
+      },
+      {
+        "id": "categories",
+        "type": "array",
+        "description": "Food categories to filter by (e.g., ['Pizza', 'Pasta', 'Burgers'])",
+        "required": false
+      },
+      {
+        "id": "ingredients",
+        "type": "array", 
+        "description": "Required ingredients (e.g., ['mushrooms', 'cheese', 'chicken'])",
+        "required": false
+      },
+      {
+        "id": "vegetarian",
+        "type": "boolean",
+        "description": "Filter for vegetarian options only",
+        "required": false
+      },
+      {
+        "id": "spicy",
+        "type": "boolean",
+        "description": "Filter for spicy food only",
+        "required": false
+      },
+      {
+        "id": "maxPrice",
+        "type": "number",
+        "description": "Maximum price filter",
+        "required": false
+      }
+    ]
+  },
+  {
+    "type": "client",
+    "name": "add_food_to_cart",
+    "description": "Smart food search and cart addition. Automatically finds the best restaurant for a specific food item and adds it to cart. Use when user wants to add food without specifying which restaurant.",
+    "parameters": [
+      {
+        "id": "foodName",
+        "type": "string",
+        "description": "Name of the food item to add (e.g., 'margherita pizza', 'cheeseburger', 'chicken pad thai')",
+        "required": true
+      },
+      {
+        "id": "restaurantPreference",
+        "type": "string",
+        "description": "Optional restaurant preference if user has a preference",
+        "required": false
+      }
+    ]
+  },
+  {
+    "type": "client",
+    "name": "curate_meal",
+    "description": "AI Meal Curator - Creates personalized dining experiences based on user's mood, preferences, and context. Perfect for when users don't know what to eat or want a curated experience. Use for queries like 'I'm feeling adventurous', 'Create me a comfort meal', 'I had a rough day', or 'Surprise me with something good'.",
+    "parameters": [
+      {
+        "id": "mood",
+        "type": "string",
+        "description": "User's current mood (e.g., 'adventurous', 'comfort', 'healthy', 'romantic', 'tired', 'happy', 'hungry')",
+        "required": false
+      },
+      {
+        "id": "adventure",
+        "type": "number",
+        "description": "Adventure level 1-5 (1=safe/familiar, 5=exotic/new). Use 4-5 for 'adventurous', 1-2 for 'comfort'",
+        "required": false
+      },
+      {
+        "id": "spice",
+        "type": "number", 
+        "description": "Spice tolerance 1-5 (1=mild, 5=very spicy). Use based on user's spice preferences",
+        "required": false
+      },
+      {
+        "id": "hunger",
+        "type": "number",
+        "description": "Hunger level 1-5 (1=light snack, 5=very hungry/multi-course). Use 4-5 for 'starving' or when they want a full meal",
+        "required": false
+      },
+      {
+        "id": "budget",
+        "type": "string",
+        "description": "Budget preference: 'low' ($10-15), 'medium' ($12-20), 'high' ($18-25+)",
+        "required": false
+      },
+      {
+        "id": "dietary",
+        "type": "array",
+        "description": "Dietary restrictions/preferences (e.g., ['vegetarian', 'gluten-free', 'healthy'])",
+        "required": false
+      }
+    ]
+  },
+  {
+    "type": "client",
+    "name": "nutrition_curator",
+    "description": "🧬 NUTRITION AI CURATOR - Scientific nutrition optimization for specialized health and fitness goals. Use for fitness scenarios (bulking, cutting, pre-workout), medical needs (pregnancy, diabetic), and specific nutrition targets. Creates meals with precise macro/micronutrient profiles.",
+    "parameters": [
+      {
+        "id": "goal",
+        "type": "string",
+        "description": "Nutrition goal: 'bulking' (muscle gain), 'cutting' (fat loss), 'pregnancy' (prenatal nutrition), 'diabetic' (blood sugar control), 'preworkout' (energy), 'postworkout' (recovery), 'antiinflammatory' (joint health), 'heartHealthy' (cardiovascular), 'senior' (elderly nutrition), 'kids' (child nutrition)",
+        "required": false
+      },
+      {
+        "id": "calories",
+        "type": "number",
+        "description": "Target calories (e.g., 2000, 3000). Use for specific caloric goals",
+        "required": false
+      },
+      {
+        "id": "protein",
+        "type": "number",
+        "description": "Target protein in grams (e.g., 40, 150). Use for muscle building, recovery",
+        "required": false
+      },
+      {
+        "id": "carbs",
+        "type": "number",
+        "description": "Target/max carbs in grams. Use for diabetic control, keto, or pre-workout energy",
+        "required": false
+      },
+      {
+        "id": "fat",
+        "type": "number",
+        "description": "Target/max fat in grams. Use for specific dietary goals",
+        "required": false
+      },
+      {
+        "id": "specialNeeds",
+        "type": "array",
+        "description": "Special micronutrients needed (e.g., ['iron', 'folate', 'calcium', 'omega-3']). Use for pregnancy, anemia, bone health",
+        "required": false
+      }
+    ]
+  },
+  {
+    "type": "client",
+    "name": "plan_family_meal",
+    "description": "🍽️ FAMILY MEAL PLANNER - AI-powered meal planning for families with multiple dietary preferences and restrictions. Optimizes meals that satisfy everyone while managing conflicts and accommodations. Perfect for group ordering with different dietary needs.",
+    "parameters": [
+      {
+        "id": "familySize",
+        "type": "number",
+        "description": "Number of family members (adults + children)",
+        "required": false
+      },
+      {
+        "id": "ageGroups",
+        "type": "array",
+        "description": "Age groups present: ['adults', 'teens', 'children', 'toddlers']",
+        "required": false
+      },
+      {
+        "id": "dietaryRestrictions",
+        "type": "array",
+        "description": "Combined dietary restrictions: ['vegetarian', 'vegan', 'glutenFree', 'dairyFree', 'nutFree', 'lowSodium']",
+        "required": false
+      },
+      {
+        "id": "preferences",
+        "type": "array",
+        "description": "Food preferences: ['pizza', 'asian', 'healthy', 'spicy', 'comfort']",
+        "required": false
+      },
+      {
+        "id": "budget",
+        "type": "string",
+        "description": "Family budget: 'low' ($30-50), 'medium' ($50-80), 'high' ($80+)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "type": "client",
+    "name": "filter_advanced_dietary",
+    "description": "🛡️ ADVANCED DIETARY FILTERING - Complex dietary restriction stacking and allergen management. Handles multiple simultaneous restrictions like vegan+gluten-free+soy-free. Includes severity levels and cross-contamination warnings.",
+    "parameters": [
+      {
+        "id": "primaryRestrictions",
+        "type": "array",
+        "description": "Main dietary restrictions: ['vegetarian', 'vegan', 'glutenFree', 'dairyFree', 'keto', 'paleo']",
+        "required": false
+      },
+      {
+        "id": "allergens",
+        "type": "array",
+        "description": "Allergens to avoid: ['nuts', 'soy', 'eggs', 'shellfish', 'fish', 'sesame']",
+        "required": false
+      },
+      {
+        "id": "severity",
+        "type": "string",
+        "description": "Allergy severity: 'mild' (digestive discomfort), 'moderate' (symptoms), 'severe' (significant reaction), 'life-threatening' (anaphylaxis)",
+        "required": false
+      },
+      {
+        "id": "crossContamination",
+        "type": "boolean",
+        "description": "Whether cross-contamination is a concern (true for severe allergies)",
+        "required": false
+      },
+      {
+        "id": "lifestyle",
+        "type": "array",
+        "description": "Lifestyle diets: ['lowCarb', 'lowSodium', 'lowSugar', 'highProtein', 'antiInflammatory']",
+        "required": false
+      },
+      {
+        "id": "cultural",
+        "type": "array",
+        "description": "Religious/cultural requirements: ['halal', 'kosher']",
+        "required": false
+      }
+    ]
+  },
+  {
+    "type": "client",
+    "name": "schedule_delivery",
+    "description": "⏰ DELIVERY SCHEDULING - Schedule delivery times for single or multiple restaurant orders. Handles group ordering logistics and timing coordination.",
+    "parameters": [
+      {
+        "id": "timePreference",
+        "type": "string",
+        "description": "Delivery time preference: 'asap' (as soon as possible), 'lunch' (11:30-1:30), 'dinner' (5:30-8:30), 'late' (8:30+), or specific time like '7:30 PM'",
+        "required": false
+      },
+      {
+        "id": "groupOrder",
+        "type": "boolean",
+        "description": "Whether this is a group order requiring coordination",
+        "required": false
+      },
+      {
+        "id": "multiRestaurant",
+        "type": "boolean",
+        "description": "Whether ordering from multiple restaurants (may have different delivery times)",
+        "required": false
+      },
+      {
+        "id": "specialInstructions",
+        "type": "string",
+        "description": "Special delivery instructions (e.g., 'Ring doorbell', 'Leave at door', 'Call when arriving')",
+        "required": false
+      }
+    ]
+  },
+  {
+    "type": "client",
+    "name": "compare_foods",
+    "description": "⚖️ FOOD COMPARISON - Side-by-side comparison of menu items across restaurants. Compare nutrition, ingredients, prices, and dietary compatibility. Perfect for health-conscious decisions.",
+    "parameters": [
+      {
+        "id": "foods",
+        "type": "array",
+        "description": "Food items to compare (2-4 items). Use food names like ['Margherita Pizza', 'Chicken Tikka Masala']",
+        "required": true
+      },
+      {
+        "id": "comparisonType",
+        "type": "string",
+        "description": "What to compare: 'nutrition' (calories, protein, etc.), 'ingredients', 'price', 'dietary' (restrictions), 'all'",
+        "required": false
+      },
+      {
+        "id": "prioritizeHealth",
+        "type": "boolean",
+        "description": "Whether to highlight healthier options",
+        "required": false
+      }
+    ]
+  },
+  {
+    "type": "client",
+    "name": "check_allergens",
+    "description": "🚨 ALLERGEN SAFETY CHECK - Comprehensive allergen analysis for food items. Checks ingredients, cross-contamination risks, and severity levels. Essential for users with food allergies.",
+    "parameters": [
+      {
+        "id": "foodItem",
+        "type": "string",
+        "description": "Food item to check for allergens",
+        "required": true
+      },
+      {
+        "id": "userAllergens",
+        "type": "array",
+        "description": "User's known allergens: ['peanuts', 'tree-nuts', 'dairy', 'gluten', 'eggs', 'shellfish', 'fish', 'soy', 'sesame']",
+        "required": false
+      },
+      {
+        "id": "severityLevel",
+        "type": "string",
+        "description": "Allergy severity: 'mild', 'moderate', 'severe', 'life-threatening'",
+        "required": false
+      },
+      {
+        "id": "checkCrossContamination",
+        "type": "boolean",
+        "description": "Whether to check for cross-contamination risks (important for severe allergies)",
+        "required": false
+      }
+    ]
+  }
+]

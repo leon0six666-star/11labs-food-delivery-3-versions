@@ -1,0 +1,436 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Food Delivery Design System - Warm, appetizing colors */
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 0 0% 100%;
+    --foreground: 20 14.3% 4.1%;
+
+    /* Food delivery brand colors */
+    --primary: 24 94% 50%;        /* Vibrant orange */
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 24 100% 65%;  /* Lighter orange for effects */
+
+    /* Secondary colors */
+    --secondary: 15 25% 95%;      /* Warm neutral */
+    --secondary-foreground: 20 14.3% 4.1%;
+
+    /* Accent colors */
+    --accent: 142 76% 36%;        /* Fresh green */
+    --accent-foreground: 0 0% 98%;
+    --accent-light: 142 70% 45%;
+
+    /* Status colors */
+    --success: 142 76% 36%;       /* Green for success */
+    --success-foreground: 0 0% 98%;
+    --warning: 45 93% 58%;        /* Yellow for warnings */
+    --warning-foreground: 20 14.3% 4.1%;
+    --destructive: 0 84% 60%;     /* Red for errors */
+    --destructive-foreground: 0 0% 98%;
+
+    /* Neutral colors */
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 24 94% 50%;
+
+    /* Design tokens */
+    --radius: 0.75rem;
+
+    /* Custom gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(24 94% 50%), hsl(24 100% 65%));
+    --gradient-accent: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 70% 45%));
+    --gradient-warm: linear-gradient(135deg, hsl(24 94% 50%), hsl(45 93% 58%));
+    --gradient-hero: linear-gradient(135deg, hsl(24 94% 50%) 0%, hsl(0 84% 60%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 2px 8px -2px hsl(20 14.3% 4.1% / 0.08);
+    --shadow-medium: 0 4px 16px -4px hsl(20 14.3% 4.1% / 0.12);
+    --shadow-strong: 0 8px 32px -8px hsl(20 14.3% 4.1% / 0.16);
+    --shadow-glow: 0 0 32px hsl(24 94% 50% / 0.3);
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark mode - warm food-friendly dark theme */
+    --background: 20 14.3% 4.1%;
+    --foreground: 0 0% 98%;
+
+    /* Maintain brand colors in dark mode */
+    --primary: 24 94% 50%;
+    --primary-foreground: 20 14.3% 4.1%;
+    --primary-glow: 24 100% 65%;
+
+    --secondary: 20 6% 10%;
+    --secondary-foreground: 0 0% 98%;
+
+    --accent: 142 76% 36%;
+    --accent-foreground: 0 0% 98%;
+    --accent-light: 142 70% 45%;
+
+    --card: 20 6% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 20 6% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    --muted: 20 6% 10%;
+    --muted-foreground: 24 5% 64%;
+    --border: 20 6% 15%;
+    --input: 20 6% 15%;
+    --ring: 24 94% 50%;
+
+    /* Enhanced shadows for dark mode */
+    --shadow-soft: 0 2px 8px -2px hsl(0 0% 0% / 0.3);
+    --shadow-medium: 0 4px 16px -4px hsl(0 0% 0% / 0.4);
+    --shadow-strong: 0 8px 32px -8px hsl(0 0% 0% / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+  
+  .gradient-warm {
+    background: var(--gradient-warm);
+  }
+  
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .shadow-medium {
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .shadow-strong {
+    box-shadow: var(--shadow-strong);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+  
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+  
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+  
+  /* New Premium Gradients */
+  .gradient-nutrition {
+    background: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(200 80% 55%) 100%);
+  }
+  
+  .gradient-family {
+    background: linear-gradient(135deg, hsl(200 80% 55%) 0%, hsl(320 65% 55%) 100%);
+  }
+  
+  .gradient-ai {
+    background: linear-gradient(135deg, hsl(260 70% 60%) 0%, hsl(300 80% 70%) 100%);
+  }
+  
+  .gradient-luxury {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  
+  /* Text Gradients */
+  .text-gradient-hero {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* New Premium Shadows */
+  .shadow-luxury {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .shadow-float {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+  
+  .shadow-glow-orange {
+    box-shadow: 0 0 30px rgba(251, 146, 60, 0.4);
+  }
+  
+  .shadow-glow-purple {
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+  }
+  
+  .shadow-glow-green {
+    box-shadow: 0 0 30px rgba(34, 197, 94, 0.4);
+  }
+  
+  /* Enhanced Transitions */
+  .transition-all {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .transition-transform {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Backdrop Effects */
+  .backdrop-blur-light {
+    backdrop-filter: blur(8px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.85);
+  }
+  
+  .backdrop-blur-medium {
+    backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.75);
+  }
+  
+  .backdrop-blur-strong {
+    backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.65);
+  }
+}
+
+@layer components {
+  /* Enhanced Card Components */
+  .card-elevated {
+    @apply bg-white rounded-xl transition-all duration-300 border-0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  }
+  
+  .card-elevated:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  }
+  
+  .card-luxury {
+    @apply card-elevated;
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+  }
+  
+  .card-glow {
+    @apply card-elevated;
+    box-shadow: 0 8px 25px rgba(251, 146, 60, 0.15);
+  }
+  
+  .card-ai {
+    @apply bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 border border-purple-200/50 rounded-xl;
+    background: linear-gradient(145deg, rgba(139, 92, 246, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+  }
+  
+  .card-nutrition {
+    @apply bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 border border-green-200/50 rounded-xl;
+    background: linear-gradient(145deg, rgba(34, 197, 94, 0.05) 0%, rgba(20, 184, 166, 0.05) 100%);
+  }
+  
+  .card-family {
+    @apply bg-gradient-to-br from-blue-50 via-cyan-50 to-pink-50 border border-blue-200/50 rounded-xl;
+    background: linear-gradient(145deg, rgba(59, 130, 246, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
+  }
+}
+
+/* Enhanced Keyframe Animations */
+@keyframes food-float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  33% { 
+    transform: translateY(-10px) rotate(1deg); 
+  }
+  66% { 
+    transform: translateY(-5px) rotate(-1deg); 
+  }
+}
+
+@keyframes ai-pulse {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.7; 
+    transform: scale(1.05);
+  }
+}
+
+@keyframes ai-scan {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(168, 85, 247, 0.6);
+  }
+}
+
+@keyframes scale-in {
+  0% { 
+    transform: scale(0.9); 
+    opacity: 0; 
+  }
+  100% { 
+    transform: scale(1); 
+    opacity: 1; 
+  }
+}
+
+@keyframes slide-down {
+  0% { 
+    transform: translateY(-20px); 
+    opacity: 0; 
+  }
+  100% { 
+    transform: translateY(0); 
+    opacity: 1; 
+  }
+}
+
+/* Utility Animation Classes */
+.animate-scale-in {
+  animation: scale-in 0.5s ease-out;
+}
+
+.animate-slide-down {
+  animation: slide-down 0.6s ease-out;
+}
+
+.animate-food-float {
+  animation: food-float 3s ease-in-out infinite;
+}
+
+.animate-ai-pulse {
+  animation: ai-pulse 2s ease-in-out infinite;
+}
+
+.animate-ai-scan {
+  animation: ai-scan 3s ease-in-out infinite;
+}
+
+/* Mobile Performance & Touch Optimizations */
+@media (max-width: 768px) {
+  /* Reduce motion for mobile performance */
+  .animate-food-float {
+    animation: food-float-mobile 4s ease-in-out infinite;
+  }
+  
+  /* Simplify shadows for mobile */
+  .shadow-luxury,
+  .shadow-glow-orange,
+  .shadow-glow-purple,
+  .shadow-glow-green {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Touch-friendly hover states */
+  .card-elevated:active,
+  .card-luxury:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease-out;
+  }
+  
+  /* Optimize button hover for touch */
+  .btn-hero:active,
+  .btn-ai:active,
+  .btn-luxury:active,
+  .btn-nutrition:active,
+  .btn-family:active {
+    transform: scale(0.96);
+    transition: transform 0.1s ease-out;
+  }
+}
+
+/* Reduced motion version for mobile */
+@keyframes food-float-mobile {
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(-5px); 
+  }
+}
+
+/* Accessibility: Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-food-float,
+  .animate-ai-pulse,
+  .animate-ai-scan,
+  .animate-scale-in,
+  .animate-slide-down {
+    animation: none;
+  }
+  
+  .transition-all,
+  .transition-transform,
+  .transition-smooth,
+  .transition-bounce {
+    transition: none;
+  }
+}
