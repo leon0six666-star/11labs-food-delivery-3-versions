@@ -2,6 +2,18 @@ import { useState, useEffect } from 'react';
 
 const STORAGE_KEY = 'elevenlabs-config';
 
+// Check if localStorage is available
+const isLocalStorageAvailable = (): boolean => {
+  try {
+    const test = '__storage_test__';
+    localStorage.setItem(test, test);
+    localStorage.removeItem(test);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
 export interface ElevenLabsConfig {
   agentId: string;
   apiKey?: string; // Optional for future use
@@ -84,23 +96,35 @@ export const validateApiKey = (apiKey?: string): ValidationResult => {
 };
 
 export const useElevenLabsConfig = () => {
+  const [storageAvailable] = useState(isLocalStorageAvailable());
   const [config, setConfig] = useState<ElevenLabsConfig>(() => {
-    // Initialize from localStorage
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      try {
+    // Initialize from localStorage if available
+    if (!storageAvailable) {
+      console.warn('localStorage is not available. Configuration will not persist.');
+      return { agentId: '' };
+    }
+
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
         return JSON.parse(stored);
-      } catch (error) {
-        console.error('Failed to parse ElevenLabs config from localStorage:', error);
       }
+    } catch (error) {
+      console.error('Failed to parse ElevenLabs config from localStorage:', error);
     }
     return { agentId: '' };
   });
 
-  // Save to localStorage whenever config changes
+  // Save to localStorage whenever config changes (if available)
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
-  }, [config]);
+    if (!storageAvailable) return;
+    
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+    } catch (error) {
+      console.error('Failed to save config to localStorage:', error);
+    }
+  }, [config, storageAvailable]);
 
   const updateConfig = (newConfig: Partial<ElevenLabsConfig>) => {
     setConfig(prev => ({ ...prev, ...newConfig }));
@@ -108,7 +132,13 @@ export const useElevenLabsConfig = () => {
 
   const clearConfig = () => {
     setConfig({ agentId: '' });
-    localStorage.removeItem(STORAGE_KEY);
+    if (storageAvailable) {
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+      } catch (error) {
+        console.error('Failed to clear config from localStorage:', error);
+      }
+    }
   };
 
   return {
@@ -116,5 +146,6 @@ export const useElevenLabsConfig = () => {
     updateConfig,
     clearConfig,
     hasAgentId: Boolean(config.agentId),
+    storageAvailable, // Expose storage availability to components
   };
 };

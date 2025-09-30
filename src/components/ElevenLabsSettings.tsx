@@ -6,11 +6,12 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useElevenLabsConfig, validateAgentId, validateApiKey, ValidationResult } from '@/hooks/use-elevenlabs-config';
 import { useToast } from '@/hooks/use-toast';
 
 export const ElevenLabsSettings = () => {
-  const { config, updateConfig, clearConfig, hasAgentId } = useElevenLabsConfig();
+  const { config, updateConfig, clearConfig, hasAgentId, storageAvailable } = useElevenLabsConfig();
   const { toast } = useToast();
   const [open, setOpen] = useState(false);
   const [agentId, setAgentId] = useState(config.agentId);
@@ -193,20 +194,27 @@ export const ElevenLabsSettings = () => {
   };
 
   return (
-    <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogTrigger asChild>
-        <Button 
-          variant="outline" 
-          size="icon"
-          className="fixed bottom-24 right-6 h-14 w-14 rounded-full shadow-lg bg-white hover:bg-gray-50 z-40"
-          title="ElevenLabs Settings"
-        >
-          <Settings className="h-6 w-6" />
-          {hasAgentId && (
-            <span className="absolute top-0 right-0 h-3 w-3 bg-green-500 rounded-full border-2 border-white" />
-          )}
-        </Button>
-      </DialogTrigger>
+    <TooltipProvider>
+      <Dialog open={open} onOpenChange={handleOpenChange}>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <DialogTrigger asChild>
+              <Button 
+                variant="outline" 
+                size="icon"
+                className="fixed bottom-24 right-6 h-14 w-14 rounded-full shadow-lg bg-white hover:bg-gray-50 z-40"
+              >
+                <Settings className="h-6 w-6" />
+                {hasAgentId && (
+                  <span className="absolute top-0 right-0 h-3 w-3 bg-green-500 rounded-full border-2 border-white" />
+                )}
+              </Button>
+            </DialogTrigger>
+          </TooltipTrigger>
+          <TooltipContent side="left">
+            <p>{hasAgentId ? 'Voice AI Active - Click to manage' : 'Configure Voice AI'}</p>
+          </TooltipContent>
+        </Tooltip>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle>ElevenLabs Voice AI Configuration</DialogTitle>
@@ -216,6 +224,16 @@ export const ElevenLabsSettings = () => {
         </DialogHeader>
 
         <div className="space-y-6 py-4">
+          {!storageAvailable && (
+            <Alert variant="destructive">
+              <AlertTriangle className="h-4 w-4" />
+              <AlertDescription>
+                <strong>localStorage is disabled or unavailable.</strong> Your configuration will not persist after page refresh. 
+                Please enable cookies/storage in your browser settings.
+              </AlertDescription>
+            </Alert>
+          )}
+
           <Alert>
             <Info className="h-4 w-4" />
             <AlertDescription>
@@ -358,6 +376,7 @@ export const ElevenLabsSettings = () => {
           )}
         </div>
       </DialogContent>
-    </Dialog>
+      </Dialog>
+    </TooltipProvider>
   );
 };
