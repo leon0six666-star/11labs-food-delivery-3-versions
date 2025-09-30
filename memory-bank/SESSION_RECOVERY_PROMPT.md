@@ -1,581 +1,489 @@
-# 🚀 SESSION RECOVERY PROMPT - Complete Context Transfer
+# SESSION RECOVERY PROMPT - ElevenLabs Food Delivery Project
 
-> **USE THIS PROMPT**: Copy and paste this entire document to a fresh AI session to instantly recover all project knowledge and be ready to code.
+## 🎯 IMMEDIATE CONTEXT RESTORATION
 
----
+You are working on the **ElevenLabs Food Delivery Platform** - a production-ready food delivery application with advanced AI voice integration and nutrition capabilities. This repository is located at:
 
-## 📋 QUICK START FOR NEW SESSION
-
-**Project**: ElevenLabs Food Delivery Platform with Advanced AI Integration  
 **Repository**: `leon0six666-star/11labs-food-delivery-3-versions`  
-**Location**: `/project/workspace/11labs-food-delivery-3-versions`  
-**Current Branch**: `main` (all work happens on main)  
-**Status**: ✅ Production-ready with 5 recent enhancements completed
+**Working Directory**: `/project/workspace/11labs-food-delivery-3-versions`  
+**Current Branch**: `main`  
+**Status**: Production-ready, all features complete
 
 ---
 
-## 🎯 PROJECT OVERVIEW
+## 📚 CRITICAL: READ THESE FILES FIRST
 
-### What This Is
-A **revolutionary food delivery platform** that goes far beyond traditional ordering:
-- **10 complete restaurants** with 48+ menu items
-- **Advanced ElevenLabs AI voice integration** (16 sophisticated tools)
-- **Nutrition AI Curator** - Professional nutritionist-level meal optimization
-- **Family meal planning** with conflict resolution
-- **Multi-restaurant ordering** with group coordination
-- **Medical-grade allergen management**
-- **localStorage-based ElevenLabs configuration** (just completed)
+Before doing ANY work, read these memory-bank files in order:
 
-### Key Differentiators
-1. **Revolutionary Nutrition AI**: "I'm bulking, need 3000 calories" → Creates scientific meal plans
-2. **Voice-First Experience**: Complete hands-free ordering via ElevenLabs ConvAI
-3. **Family Coordination**: AI resolves dietary conflicts for family meals
-4. **Medical Safety**: Comprehensive allergen tracking with emergency protocols
-5. **Multi-Restaurant Logistics**: Advanced group ordering with scheduled delivery
+1. **memory-bank/projectbrief.md** - Project overview and goals
+2. **memory-bank/techContext.md** - Technical architecture and stack
+3. **memory-bank/progress.md** - Complete feature list and enhancement history
+4. **memory-bank/activeContext.md** - Current work and branch status
+5. **memory-bank/systemPatterns.md** - Code patterns and conventions
+6. **memory-bank/productContext.md** - User experience and business logic
+
+**DO NOT START CODING** until you've read these files. They contain critical context about what's been built and how things work.
 
 ---
 
-## 🏗️ TECHNICAL ARCHITECTURE
+## 🏗️ PROJECT ARCHITECTURE
 
-### Stack
-- **Frontend**: React 18.3.1 + TypeScript 5.8.3 (100% type safety)
-- **UI Framework**: shadcn/ui (40+ components) + Tailwind CSS
-- **Build Tool**: Vite (fast dev server, HMR)
-- **Routing**: React Router v6
-- **State**: React Context + localStorage
-- **Package Manager**: npm (detected from package-lock.json)
-- **Node Version**: Check `.nvmrc` if present
+### Technology Stack
+```
+Frontend: React 18.3.1 + TypeScript 5.8.3 + Vite
+UI: shadcn/ui (40+ components)
+Styling: Tailwind CSS
+Routing: React Router v6
+State: React Context + localStorage
+AI: ElevenLabs Conversational AI (16 voice tools)
+```
 
-### Project Structure
+### Key Directories
 ```
 src/
-├── components/
-│   ├── ui/                    # shadcn/ui components
-│   ├── ElevenLabsSettings.tsx # Settings dialog (just enhanced)
-│   ├── RestaurantList.tsx     # Main restaurant browsing
-│   ├── RestaurantDetail.tsx   # Individual restaurant + menu
-│   ├── Cart.tsx               # Multi-restaurant cart
-│   ├── AIInterface.tsx        # AI demo showcase
-│   ├── NutritionCurator.tsx   # Nutrition AI tool
-│   ├── FamilyMealPlanner.tsx  # Family meal coordination
-│   └── [more components]
-├── hooks/
-│   ├── use-elevenlabs-config.ts  # Config hook (just enhanced)
-│   └── use-toast.ts
-├── lib/
-│   ├── elevenlabs-tools.ts    # 16 AI tool integrations
-│   └── utils.ts
-├── data/
-│   └── mockData.ts            # 904 lines of restaurant/menu data
-├── types.ts                   # TypeScript interfaces
-└── App.tsx                    # Main app with routing
+├── components/         # UI components (40+ shadcn/ui)
+├── hooks/             # Custom React hooks (including use-elevenlabs-config)
+├── pages/             # Route pages
+├── lib/               # Utilities and data
+└── main.tsx           # Entry point
 
-memory-bank/                   # PROJECT MEMORY (READ THESE FIRST!)
-├── SESSION_RECOVERY_PROMPT.md # This file
-├── progress.md                # Complete feature history
-├── techContext.md             # Technical decisions
-├── systemPatterns.md          # Code patterns
-├── activeContext.md           # Current state
-├── productContext.md          # Product vision
-└── projectbrief.md            # Original requirements
+memory-bank/           # Project knowledge base (6 files)
 ```
-
-### Key Files to Know
-- **ElevenLabsSettings.tsx** (400+ lines): Recently enhanced settings dialog
-- **use-elevenlabs-config.ts** (150+ lines): Configuration hook with validation
-- **elevenlabs-tools.ts**: 16 AI tools for voice control
-- **mockData.ts**: Complete restaurant/menu database
-- **ENHANCEMENTS-2025.md**: Documentation for 5 recent improvements
 
 ---
 
-## 🎉 RECENT WORK (JANUARY 2025)
+## 🎨 WHAT THIS PROJECT IS
 
-### 5 Enhancements Just Completed - All on main branch
+### Core Platform (Fully Built ✅)
+- **10 Complete Restaurants** with 48+ menu items
+- **Advanced Search & Filtering** (cuisine, price, dietary)
+- **Shopping Cart & Checkout** (multi-restaurant support)
+- **Restaurant Details** with full menu system
+- **Responsive Design** (mobile-first, works on all devices)
 
-#### Enhancement #1: .gitignore File ✅
-- **Commit**: `1c813499`
-- **What**: 91-line comprehensive .gitignore
-- **Why**: Prevent build artifacts, node_modules, env files from being committed
+### AI Integration (Revolutionary ✅)
+- **16 ElevenLabs Voice Tools** for complete voice control
+- **Nutrition AI Curator** - Health goal optimization (bulking, pregnancy, diabetic, etc.)
+- **Meal Curator** - AI-powered meal suggestions
+- **Family Meal Planner** - Multi-preference optimization
+- **Advanced Dietary Filtering** - Complex restriction stacking
+- **Allergen Management** - Medical-grade allergen tracking
 
-#### Enhancement #2: Real-time Validation ✅
-- **Commit**: `69f58674`
-- **What**: validateAgentId() + validateApiKey() functions with visual feedback
-- **Files**: use-elevenlabs-config.ts (+76 lines), ElevenLabsSettings.tsx (+82 lines)
-- **Features**: Green/red borders, inline errors, prevents invalid saves
+### Recent Enhancements (January 2025 ✅)
+1. **.gitignore** - 91-line comprehensive file
+2. **Validation System** - Real-time Agent ID/API Key validation
+3. **Export/Import** - Configuration backup/restore
+4. **localStorage Fallback** - Graceful degradation
+5. **Tooltip** - Context-aware settings button tooltip
 
-#### Enhancement #3: Export/Import Configuration ✅
-- **Commit**: `9d46d61f`
-- **What**: Backup/restore settings via JSON files
-- **Files**: ElevenLabsSettings.tsx (+124 lines)
-- **Features**: Timestamped exports, validated imports, "Backup & Restore" UI section
-
-#### Enhancement #4: localStorage Fallback ✅
-- **Commit**: `2f33ee71`
-- **What**: Graceful handling when localStorage unavailable
-- **Files**: use-elevenlabs-config.ts (+31 lines), ElevenLabsSettings.tsx (+10 lines)
-- **Features**: Availability detection, in-memory fallback, user warnings
-
-#### Enhancement #5: Settings Button Tooltip ✅
-- **Commit**: `2f33ee71` (combined with #4)
-- **What**: Context-aware tooltip on floating settings button
-- **Files**: ElevenLabsSettings.tsx (+9 lines)
-- **Features**: "Configure Voice AI" vs "Voice AI Active - Click to manage"
-
-### Documentation Created
-- **ENHANCEMENTS-2025.md**: 800+ lines of comprehensive documentation
-- **memory-bank/progress.md**: Updated with all enhancement details
+**See ENHANCEMENTS-2025.md for complete details**
 
 ---
 
-## 🔧 DEVELOPMENT WORKFLOW
+## 🔧 ELEVENLABS CONFIGURATION SYSTEM
 
-### Starting Work (MANDATORY)
+### Current Implementation
+The app uses a **localStorage-based configuration system** for ElevenLabs Agent ID:
+
+**Key Files**:
+- `src/hooks/use-elevenlabs-config.ts` - Custom hook with validation
+- `src/components/ElevenLabsSettings.tsx` - Settings dialog with floating button
+- `src/App.tsx` - Conditional widget rendering based on config
+
+### How It Works
+1. User clicks floating gear button (bottom-right)
+2. Opens settings dialog
+3. Enters ElevenLabs Agent ID (from dashboard)
+4. Configuration saved to localStorage
+5. Page reloads with widget active
+
+### Features
+- ✅ Real-time validation (Agent ID format, length)
+- ✅ Export/import configuration (JSON files)
+- ✅ localStorage fallback handling (privacy mode)
+- ✅ Context-aware tooltip
+- ✅ Visual feedback (green/red borders)
+
+---
+
+## 🚀 DEVELOPMENT WORKFLOW
+
+### Package Manager: npm (detected from package-lock.json)
+
+### Common Commands
 ```bash
-cd /project/workspace/11labs-food-delivery-3-versions
-
-# 1. Check git status
-git status
-git branch
-
-# 2. Pull latest (should already be up to date)
-git pull origin main
-
-# 3. Install dependencies (if needed)
-npm ci
-
-# 4. Start dev server
-npm run dev
-
-# 5. Build to verify (before any commit)
-npm run build
+npm install              # Install dependencies
+npm run dev             # Start dev server
+npm run build           # Build for production
+npm run lint            # Run ESLint
+npm run preview         # Preview production build
 ```
 
-### Code Quality Standards
-- ✅ **100% TypeScript** - No `any` types allowed
-- ✅ **Type-safe** - Strict TypeScript settings
-- ✅ **Build passes** - Must compile without errors
-- ✅ **No console errors** - Clean runtime
-- ✅ **Mobile responsive** - Works on all devices
-- ✅ **Accessible** - ARIA attributes, keyboard nav
+### When Making Changes
 
-### Git Workflow
+1. **Always pull latest first**:
+   ```bash
+   git fetch --all --prune
+   git pull --ff-only
+   ```
+
+2. **For implementation work, create feature branch**:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+3. **Make changes**, then build and verify:
+   ```bash
+   npm run build
+   ```
+
+4. **Commit with descriptive messages**:
+   ```bash
+   git add -A
+   git commit -m "feat: descriptive message"
+   ```
+
+5. **Push and create PR**:
+   ```bash
+   git push origin feature/your-feature-name
+   # Then create PR on GitHub
+   ```
+
+### For Quick Fixes (User Approved Direct Push)
+If user explicitly approves direct main push:
 ```bash
-# We work directly on main branch (as per user preference)
-# All work is committed and pushed to main
-
-# After making changes:
 git add -A
-git commit -m "type: description"  # Use conventional commits
+git commit -m "fix: description"
 git push origin main
-
-# NO secondary branches
-# NO uncommitted changes
-# Everything stays clean on main
-```
-
-### Commit Message Format
-```
-feat: Add new feature
-fix: Bug fix
-docs: Documentation update
-chore: Maintenance (like .gitignore)
-refactor: Code refactoring
-style: Formatting, no logic change
-test: Adding tests
 ```
 
 ---
 
-## 🧠 ELEVENLABS INTEGRATION
+## 📋 CODING STANDARDS
 
-### Current Setup
-- **Widget**: `<elevenlabs-convai agent-id="..."></elevenlabs-convai>`
-- **Script**: `https://unpkg.com/@elevenlabs/convai-widget-embed`
-- **Configuration**: localStorage-based (no .env needed)
-- **Settings UI**: Floating gear button (bottom-right) opens settings dialog
+### TypeScript Rules
+- **100% type safety** - No `any` types
+- **Strict mode enabled** - Follow all TypeScript checks
+- **Interface over Type** - Use interfaces for objects
+- **Explicit return types** - On all functions
 
-### 16 AI Tools Registered
-1. **navigate_to_page** - Navigate between app pages
-2. **browse_restaurants** - Filter/search restaurants
-3. **view_restaurant** - View specific restaurant
-4. **add_to_cart** - Add menu item to cart
-5. **view_cart** - Navigate to cart
-6. **search** - Search restaurants/food
-7. **search_food** - Cross-restaurant food search
-8. **add_food_to_cart** - Smart cart addition
-9. **curate_meal** - AI meal creation
-10. **nutrition_curator** - Scientific nutrition optimization
-11. **plan_family_meal** - Family meal coordination
-12. **filter_advanced_dietary** - Complex dietary filters
-13. **schedule_delivery** - Delivery timing
-14. **compare_foods** - Nutrition comparison
-15. **check_allergens** - Allergen safety
-16. **get_nutrition_goals** - Goal recommendations
+### React Patterns
+- **Functional components only** - No class components
+- **Hooks-based architecture** - useState, useEffect, custom hooks
+- **Component naming**: PascalCase (e.g., `ElevenLabsSettings.tsx`)
+- **Props destructuring**: Always destructure in function signature
 
-### Voice Command Examples
-```
-"I'm bulking, need 3000 calories"
-"Find Italian restaurants under $20"
-"Add margherita pizza to my cart"
-"I'm diabetic, keep carbs under 30g"
-"Plan a meal for my family - my son is vegan"
-```
+### File Organization
+- **One component per file** - Named after the component
+- **Custom hooks**: `use-` prefix (e.g., `use-elevenlabs-config.ts`)
+- **Utilities**: `lib/` directory
+- **Types**: Define at top of file or separate `.types.ts`
+
+### shadcn/ui Usage
+- **Import from `@/components/ui/`** - Already installed components
+- **Customize via className** - Use Tailwind for customization
+- **Available components**: Button, Dialog, Input, Label, Card, Alert, Tooltip, etc. (40+ total)
 
 ---
 
-## 📊 DATA MODEL
+## 🎯 COMMON TASKS & HOW TO DO THEM
 
-### Restaurant Interface
-```typescript
-interface Restaurant {
-  id: string;
-  name: string;
-  cuisine: string;
-  rating: number;
-  reviewCount: number;
-  deliveryTime: string; // "25-35 min"
-  deliveryFee: number;
-  minimumOrder: number;
-  image: string;
-  description: string;
-  address: string;
-  phone: string;
-  coordinates: { lat: number; lng: number };
-  distance?: number; // calculated
-  isOpen: boolean;
-  priceRange: '$' | '$$' | '$$$';
-  tags: string[];
-  featured?: boolean;
-}
-```
+### Task: Add a New Feature
+1. Read `memory-bank/progress.md` to understand current state
+2. Check `memory-bank/systemPatterns.md` for code patterns
+3. Create feature branch: `git checkout -b feature/new-feature`
+4. Implement using existing patterns (see similar features)
+5. Build and verify: `npm run build`
+6. Commit with clear message
+7. Push and create PR
 
-### MenuItem Interface
-```typescript
-interface MenuItem {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  image: string;
-  isVegetarian?: boolean;
-  isVegan?: boolean;
-  isGlutenFree?: boolean;
-  isSpicy?: boolean;
-  calories?: number;
-  protein?: number;
-  carbs?: number;
-  fat?: number;
-  allergens?: string[];
-}
-```
+### Task: Fix a Bug
+1. Understand the issue (ask user for details if needed)
+2. Locate relevant files (use grep/glob tools)
+3. Fix following existing patterns
+4. Test with build
+5. Commit with `fix:` prefix
+6. Push to feature branch or main (if approved)
 
-### Current Data
-- **10 Restaurants**: Bella Vista Pizza, Dragon Palace, Burger Spot, Sakura Sushi, Spice Garden, Taco Libre, Thai Orchid, Seoul Kitchen, Mediterranean Breeze, Le Petit Café
-- **48+ Menu Items**: Complete with nutrition data
-- **Location**: Mock geocoding with realistic coordinates
+### Task: Update Memory Bank
+After significant work:
+1. Update `memory-bank/progress.md` with new features
+2. Update `memory-bank/activeContext.md` with current status
+3. Add patterns to `memory-bank/systemPatterns.md` if new patterns used
+4. Commit: `docs: Update memory bank with [description]`
+
+### Task: ElevenLabs Widget Configuration
+**Files to modify**:
+- `src/hooks/use-elevenlabs-config.ts` - State management
+- `src/components/ElevenLabsSettings.tsx` - UI
+- `src/App.tsx` - Widget integration
+
+**Pattern**: Follow existing validation and localStorage patterns
 
 ---
 
-## 🎨 UI PATTERNS
+## 🧠 ELEVENLABS AI TOOLS (16 TOTAL)
 
-### shadcn/ui Components Used
-```typescript
-// Common imports
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { useToast } from '@/hooks/use-toast';
-```
+The platform has **16 registered voice tools** in `public/elevenlabs-tool-definitions.json`:
 
-### Toast Notifications
-```typescript
-const { toast } = useToast();
+### Navigation & Discovery
+1. `navigate_to_page` - Navigate to routes
+2. `browse_restaurants` - Filter/search restaurants
+3. `view_restaurant` - View restaurant details
+4. `search` - General search
+5. `search_food` - Cross-restaurant food search
 
-toast({
-  title: "Success",
-  description: "Action completed successfully",
-});
+### Cart Management
+6. `add_to_cart` - Add items to cart
+7. `view_cart` - View cart contents
+8. `add_food_to_cart` - Smart cart addition
 
-toast({
-  title: "Error",
-  description: "Something went wrong",
-  variant: "destructive",
-});
-```
+### AI Meal Planning
+9. `curate_meal` - AI meal suggestions
+10. `nutrition_curator` - Health goal optimization
+11. `plan_family_meal` - Family meal planning
+12. `filter_advanced_dietary` - Complex dietary filtering
 
-### Validation Pattern (Recent Enhancement)
-```typescript
-interface ValidationResult {
-  isValid: boolean;
-  errors: string[];
-  warnings: string[];
-}
+### Advanced Features
+13. `schedule_delivery` - Delivery timing
+14. `compare_foods` - Nutrition comparison
+15. `check_allergens` - Allergen safety
+16. `get_recommendations` - Personalized recommendations
 
-const validation = validateAgentId(agentId);
-if (!validation.isValid) {
-  // Show errors
-}
-```
+**When modifying**: Update both `elevenlabs-tool-definitions.json` AND the corresponding handler in `src/lib/elevenlabs-tools.ts`
 
 ---
 
-## 🚨 IMPORTANT PATTERNS TO FOLLOW
+## ⚠️ IMPORTANT GOTCHAS
 
-### 1. localStorage with Fallback
-```typescript
-// Always check availability first
-const isLocalStorageAvailable = (): boolean => {
-  try {
-    const test = '__storage_test__';
-    localStorage.setItem(test, test);
-    localStorage.removeItem(test);
-    return true;
-  } catch (e) {
-    return false;
-  }
-};
+### 1. localStorage in Dev
+- **Test localStorage fallback** - Use incognito mode to test
+- **Check console warnings** - localStorage errors logged
+- **Validation required** - Always validate before saving
 
-// Use with try-catch
-try {
-  localStorage.setItem(key, value);
-} catch (error) {
-  console.error('Storage failed:', error);
-}
-```
+### 2. Cart State
+- **Cart is global** - Managed by CartContext
+- **Multi-restaurant support** - Separate subtotals per restaurant
+- **localStorage persistence** - Cart survives refresh
 
-### 2. TypeScript Strict Mode
-```typescript
-// No any types!
-// ❌ Bad
-const data: any = ...;
+### 3. Mock Data
+- **All data is mock** - In `src/lib/data/`
+- **10 restaurants, 48 menu items** - Complete but static
+- **Ready for API integration** - TanStack Query configured
 
-// ✅ Good
-interface DataType {
-  field: string;
-}
-const data: DataType = ...;
-```
+### 4. Build Warnings
+- **Tailwind `duration-[20s]` warning** - Known, can be ignored
+- **Bundle size warning** - Known, 539KB (can optimize later)
+- **All builds should pass** - Exit code 0 required
 
-### 3. Component Structure
-```typescript
-export const ComponentName = () => {
-  // Hooks first
-  const { config } = useHook();
-  const [state, setState] = useState();
-  
-  // Functions
-  const handleAction = () => { ... };
-  
-  // Effects
-  useEffect(() => { ... }, [deps]);
-  
-  // Render
-  return ( ... );
-};
-```
-
-### 4. Error Handling
-```typescript
-// Always handle errors
-try {
-  await riskyOperation();
-} catch (error) {
-  console.error('Operation failed:', error);
-  toast({
-    title: "Error",
-    description: error.message,
-    variant: "destructive"
-  });
-}
-```
+### 5. ElevenLabs Widget
+- **Requires Agent ID** - From ElevenLabs dashboard
+- **Script in index.html** - `https://unpkg.com/@elevenlabs/convai-widget-embed`
+- **Conditional rendering** - Only shows when agentId configured
 
 ---
 
-## 📚 KEY COMMANDS
+## 🎬 FIRST STEPS IN NEW SESSION
 
-### Development
+When you start a new session, do this in order:
+
+### Step 1: Read Memory Bank (5 min)
+```
+1. Read memory-bank/projectbrief.md
+2. Read memory-bank/techContext.md  
+3. Read memory-bank/progress.md
+4. Read memory-bank/activeContext.md
+```
+
+### Step 2: Check Repository Status (1 min)
 ```bash
-npm run dev        # Start dev server (port 5173)
-npm run build      # Production build
-npm run preview    # Preview build
-npm run lint       # ESLint check
-```
-
-### Git
-```bash
-git status         # Check status
-git log --oneline -10  # Recent commits
-git branch -a      # All branches (should only see main)
-git diff           # See changes
-git add -A         # Stage all
-git commit -m "msg"  # Commit
-git push origin main  # Push to main
-```
-
-### File Operations
-```bash
-ls -la             # List files
-cat file.txt       # View file
-grep -r "text"     # Search in files
-```
-
----
-
-## 🎯 CURRENT STATE & NEXT STEPS
-
-### What's Complete ✅
-- ✅ Full restaurant browsing and ordering
-- ✅ 16 ElevenLabs AI tools
-- ✅ Nutrition AI with 8 scenarios
-- ✅ Family meal planning
-- ✅ Multi-restaurant cart
-- ✅ localStorage configuration system (5 enhancements)
-- ✅ Complete validation system
-- ✅ Export/import functionality
-- ✅ Graceful localStorage fallback
-- ✅ Professional UI polish
-
-### Repository Status ✅
-- ✅ Working tree clean
-- ✅ All changes committed and pushed
-- ✅ No secondary branches
-- ✅ Up to date with origin/main
-- ✅ Memory bank saved and updated
-
-### Potential Future Work 🔮
-(Only if user requests - don't do unprompted)
-1. Real API integration (replace mock data)
-2. User authentication system
-3. Payment processing (Stripe)
-4. Real-time order tracking
-5. Mobile app (React Native)
-6. Unit/E2E testing
-7. Performance optimization
-8. Internationalization (i18n)
-
----
-
-## 💡 HOW TO USE THIS PROMPT
-
-### When Starting a Fresh Session
-
-1. **Copy this entire document**
-2. **Paste to the new AI session with this intro**:
-
-```
-I need you to take over development of the ElevenLabs Food Delivery project.
-Here's the complete context from the previous session:
-
-[PASTE ENTIRE SESSION_RECOVERY_PROMPT.md HERE]
-
-After reading this, please:
-1. Confirm you understand the project
-2. Verify the current state
-3. Tell me you're ready to continue development
-```
-
-3. **The new AI should**:
-   - Read all memory-bank files
-   - Check git status
-   - Verify latest commits
-   - Confirm repository is clean
-   - Be ready to code
-
----
-
-## 🔍 FIRST ACTIONS IN NEW SESSION
-
-```bash
-# 1. Navigate to project
 cd /project/workspace/11labs-food-delivery-3-versions
-
-# 2. Verify git status
 git status
-git log --oneline -5
 git branch -a
+git log --oneline -5
+```
 
-# 3. Read memory bank files
-cat memory-bank/progress.md
-cat memory-bank/activeContext.md
-cat ENHANCEMENTS-2025.md
+### Step 3: Ask User for Task (1 min)
+Ask: "What would you like me to work on today?"
 
-# 4. Verify key files exist
-ls -la .gitignore
-ls -la src/hooks/use-elevenlabs-config.ts
-ls -la src/components/ElevenLabsSettings.tsx
+Then proceed based on task type:
+- **New feature**: Create feature branch, implement, PR
+- **Bug fix**: Fix on feature branch or main (if approved)
+- **Documentation**: Update memory-bank files
+- **Enhancement**: Follow existing patterns
 
-# 5. Ready to code!
+### Step 4: Execute Task
+Follow the patterns in `memory-bank/systemPatterns.md` and reference similar existing features.
+
+---
+
+## 💡 DECISION-MAKING GUIDELINES
+
+### When to Create a Branch
+- **Always** for new features
+- **Always** for experimental changes
+- **Optional** for bug fixes (ask user)
+- **Never** for documentation-only changes (can go direct to main if approved)
+
+### When to Ask User
+- **Unclear requirements** - Always clarify before coding
+- **Breaking changes** - Get approval first
+- **Direct main push** - Ask if allowed
+- **Multiple approaches** - Present options
+
+### When to Update Memory Bank
+- **After major features** - Always update progress.md
+- **New patterns introduced** - Add to systemPatterns.md
+- **Architecture changes** - Update techContext.md
+- **Current work changes** - Update activeContext.md
+
+---
+
+## 🔍 QUICK REFERENCE
+
+### Find Something
+```bash
+# Find files
+find src/ -name "*settings*"
+
+# Search code (use grep_tool)
+grep -r "ElevenLabs" src/
+
+# List components
+ls src/components/
+```
+
+### Key Configuration Files
+- `package.json` - Dependencies and scripts
+- `tsconfig.json` - TypeScript config
+- `vite.config.ts` - Vite build config
+- `tailwind.config.js` - Tailwind config
+- `public/elevenlabs-tool-definitions.json` - AI tools
+
+### Important URLs
+- **ElevenLabs Dashboard**: https://elevenlabs.io/app
+- **GitHub Repo**: https://github.com/leon0six666-star/11labs-food-delivery-3-versions
+
+---
+
+## 📊 PROJECT STATUS SNAPSHOT
+
+**Completion**: 95% ✅  
+**Build Status**: ✅ Passing  
+**Type Safety**: ✅ 100%  
+**Production Ready**: ✅ YES  
+**Last Major Update**: January 2025 (5 enhancements)
+
+### What's Built (100% Complete)
+✅ Restaurant browsing and filtering  
+✅ Shopping cart and checkout  
+✅ 16 ElevenLabs voice tools  
+✅ Nutrition AI system  
+✅ Family meal planning  
+✅ Allergen management  
+✅ Multi-restaurant ordering  
+✅ ElevenLabs configuration system  
+
+### What's Not Built (Future Work)
+❌ Real backend API integration  
+❌ User authentication  
+❌ Payment processing  
+❌ Real-time order tracking  
+❌ Restaurant management dashboard  
+
+---
+
+## 🆘 TROUBLESHOOTING
+
+### Build Fails
+1. Check TypeScript errors: `npx tsc --noEmit`
+2. Check for missing imports
+3. Verify all components exist
+4. Check console for specific errors
+
+### localStorage Issues
+1. Check browser console for warnings
+2. Test in regular (non-incognito) mode
+3. Verify `isLocalStorageAvailable()` returns true
+4. Check if storage quota exceeded
+
+### Git Issues
+1. Always pull before pushing: `git pull --ff-only`
+2. If behind, rebase: `git pull --rebase`
+3. If conflicts, resolve then `git rebase --continue`
+
+### Can't Find Something
+1. Use grep tool: Search for text in files
+2. Use glob tool: Search for file patterns
+3. Check memory-bank files for documentation
+4. Ask user for clarification
+
+---
+
+## 🎓 LEARNING FROM THIS PROJECT
+
+### Best Practices Demonstrated
+- **Memory Bank System** - All projects should have this
+- **TypeScript Strict Mode** - Catches bugs early
+- **Component-Based Architecture** - Highly maintainable
+- **localStorage Patterns** - Proper error handling
+- **Validation First** - User-friendly error messages
+
+### Patterns to Reuse
+- **Custom Hooks Pattern** - `use-elevenlabs-config.ts` is exemplary
+- **Dialog Component Pattern** - Clean, accessible, mobile-friendly
+- **Validation Result Interface** - Clear error/warning separation
+- **Export/Import Pattern** - JSON with metadata
+- **Context + localStorage** - Persistent global state
+
+---
+
+## 🔐 SECURITY NOTES
+
+- **No API keys in code** - All sensitive data via localStorage
+- **.gitignore configured** - Prevents accidental commits
+- **Validation on all inputs** - Prevents invalid data
+- **No external API calls yet** - All mock data (safe)
+
+---
+
+## ✅ SESSION RECOVERY CHECKLIST
+
+Before starting work, verify:
+
+- [ ] Read all 6 memory-bank files
+- [ ] Understood project architecture
+- [ ] Checked git status (working tree clean)
+- [ ] On main branch or created feature branch
+- [ ] Know what user wants to work on
+- [ ] Have access to all necessary files
+- [ ] Understand ElevenLabs configuration system
+- [ ] Ready to follow existing code patterns
+
+**When all checked, you're ready to code!** 🚀
+
+---
+
+## 💬 SAMPLE RECOVERY PROMPT
+
+**Give this to a new session**:
+
+```
+You're working on the ElevenLabs Food Delivery project (repo: leon0six666-star/11labs-food-delivery-3-versions). 
+
+FIRST: Read memory-bank/SESSION_RECOVERY_PROMPT.md - it contains everything you need.
+
+THEN: Read the other 6 memory-bank files in the order specified.
+
+FINALLY: Check git status and ask me what to work on.
+
+The project is production-ready with 16 AI voice tools, advanced nutrition features, and a complete ElevenLabs configuration system. All context is in the memory-bank files.
+
+Ready?
 ```
 
 ---
 
-## 🎓 CONTEXT COMPREHENSION CHECK
+**END OF SESSION RECOVERY PROMPT**
 
-**After reading this, the new AI session should be able to answer**:
-
-1. ✅ What is this project? → Revolutionary food delivery with AI nutrition
-2. ✅ What tech stack? → React 18 + TypeScript 5 + shadcn/ui + Vite
-3. ✅ What was just completed? → 5 enhancements to ElevenLabs config system
-4. ✅ What's the git workflow? → Direct commits to main, no branches
-5. ✅ Where is configuration stored? → localStorage with fallback
-6. ✅ How many AI tools? → 16 ElevenLabs ConvAI tools
-7. ✅ What's unique about this? → Nutrition AI, family planning, medical-grade allergen tracking
-8. ✅ Where's the memory? → memory-bank/ folder (6 files)
-9. ✅ What's the current state? → Clean, committed, pushed, production-ready
-10. ✅ What's next? → Wait for user instructions
-
----
-
-## 📞 USER PREFERENCES
-
-### Important Notes About This User
-- ✅ **Works directly on main** - No feature branches (unless explicitly requested)
-- ✅ **Wants clean repo** - No uncommitted changes, no lingering branches
-- ✅ **Values memory bank** - Keep memory-bank updated after significant work
-- ✅ **Prefers thorough docs** - Document everything comprehensively
-- ✅ **Quality focus** - Build must pass, 100% TypeScript, no errors
-- ✅ **Efficient workflow** - Parallel tool calls when possible
-
-### Communication Style
-- Clear and professional
-- Use emojis for visual organization
-- Tables for comparisons
-- Code examples with syntax highlighting
-- Step-by-step instructions when needed
-- Celebrate completions with checkmarks ✅
-
----
-
-## 🚀 YOU ARE NOW READY TO CODE
-
-If you're a fresh AI session reading this:
-
-**Welcome back to the ElevenLabs Food Delivery project!**
-
-You now have complete context on:
-- ✅ What the project is and does
-- ✅ The technical architecture
-- ✅ What was just completed (5 enhancements)
-- ✅ Code patterns and standards
-- ✅ Git workflow and user preferences
-- ✅ Current repository state
-
-**Next steps**:
-1. Verify repository status (git status)
-2. Read the 6 memory-bank files for deeper context
-3. Check ENHANCEMENTS-2025.md for recent work details
-4. Tell the user you're ready and ask what they'd like to work on next
-
-**Remember**: Always keep working tree clean, commit to main, update memory-bank after significant work, and maintain 100% TypeScript type safety!
-
----
-
-**Session Recovery Prompt Version**: 1.0  
-**Last Updated**: January 30, 2025  
-**Repository**: leon0six666-star/11labs-food-delivery-3-versions  
-**Status**: Production-Ready ✅
+This document contains everything needed to restore full project context in a new session. Read it carefully, follow the steps, and you'll be coding like you never left! 🎯
