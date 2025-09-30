@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { CartProvider } from "@/contexts/CartContext";
+import { ElevenLabsSettings } from "@/components/ElevenLabsSettings";
+import { useElevenLabsConfig } from "@/hooks/use-elevenlabs-config";
 
 // Pages
 import Home from "./pages/Home";
@@ -193,6 +195,26 @@ const AppRoutes = () => {
   );
 };
 
+const AppContent = () => {
+  const { config } = useElevenLabsConfig();
+
+  return (
+    <div className="min-h-screen bg-background">
+      <AppRoutes />
+      
+      {/* ElevenLabs Settings Button - Floating at bottom right */}
+      <ElevenLabsSettings />
+      
+      {/* ElevenLabs Conversational AI Widget - Only renders when Agent ID is set */}
+      {config.agentId && (
+        <elevenlabs-convai 
+          agent-id={config.agentId}
+        ></elevenlabs-convai>
+      )}
+    </div>
+  );
+};
+
 const App = () => (
   <ErrorBoundary>
     <QueryClientProvider client={queryClient}>
@@ -201,15 +223,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <div className="min-h-screen bg-background">
-              <AppRoutes />
-              {/* ElevenLabs Conversational AI Widget */}
-              {import.meta.env.VITE_ELEVENLABS_AGENT_ID && (
-                <elevenlabs-convai 
-                  agent-id={import.meta.env.VITE_ELEVENLABS_AGENT_ID}
-                ></elevenlabs-convai>
-              )}
-            </div>
+            <AppContent />
           </BrowserRouter>
         </CartProvider>
       </TooltipProvider>
